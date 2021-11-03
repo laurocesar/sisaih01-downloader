@@ -2,8 +2,9 @@ version: '3.8'
 services:
   php-apache-environment:
     container_name: php-sisaih01-downloader
-    image: php:7.4-apache
+#    image: php:7.4-apache
+    image: laurocesar/sisaih01-downloader:latest
     volumes:
       - ./src/main/php/sisaih01:/var/www/html/
     ports:
-      - 8000:80
+      - 80:80

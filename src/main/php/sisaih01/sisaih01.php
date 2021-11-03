@@ -7,4 +7,5 @@ $aih = new SISAIHDownloader();
 echo '<pre>';
 echo $aih->getRemoteContent();
 echo '</pre>';
+echo '<a href="'.$aih::FULL_URL.'">'.$aih::FULL_URL.'</a>'
 ?>

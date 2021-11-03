@@ -8,7 +8,10 @@ class SISAIHDownloader{
     const FTP_FILE = '/public/sistemas/dsweb/SIHD/Programas/sisaih01_leiame.txt';
     const LOCAL_FILE = 'php://output';
     
-    public function getRemoteContent(){
+    const FULL_URL = 'ftp://' . self::FTP_SERVER . self::FTP_FILE;
+    
+    
+    public function getRemoteContent(): string{
         $content = self::download();
         
         $content = self::regex($content);
