@@ -22,7 +22,7 @@ class SISAIHDownloader{
     /**
      * Return first block of changes 
      */
-    private function regex(string $content): string{
+    private function regex(string $content): string {
         //all before        
         $before = strstr($content,'----------------------------------------------------', true);  // fullstring when no delimiter is found
         
@@ -42,6 +42,10 @@ class SISAIHDownloader{
     private function download(): string{
         // set up basic connection
         $conn_id = ftp_connect(self::FTP_SERVER);
+        
+        if (!$conn_id){
+            throw new ErrorException("Could not connect to ".self::FTP_SERVER);
+        }
 
         // login with username and password
         $login_result = ftp_login($conn_id, self::FTP_USER, self::FTP_PASSWORD);
@@ -58,7 +62,7 @@ class SISAIHDownloader{
         ob_end_clean();
         
         if (!$result){
-            echo "There was a problem\n";
+            throw new ErrorException("There was a problem when getting contents");
         }
         
         // close the connection

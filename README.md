@@ -44,5 +44,5 @@ Just run:
 Run as:
 
 ```
-docker run laurocesar/sisaih01-downloader:TAG
+docker run -p 80:80 -d --restart unless-stopped --name sisaih01-downloader laurocesar/sisaih01-downloader:TAG 
 ```
