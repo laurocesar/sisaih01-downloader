@@ -39,11 +39,13 @@ class SISAIHDownloader{
     private function download(): string{
         // set up basic connection
         $conn_id = ftp_connect(self::FTP_SERVER);
-        
+
         // login with username and password
         $login_result = ftp_login($conn_id, self::FTP_USER, self::FTP_PASSWORD);
-        ftp_pasv($conn_id, true);
         
+        // options
+        ftp_pasv($conn_id, true);
+        ftp_raw($conn_id, 'OPTS UTF8 ON');
         
         // try to download $server_file and save to $local_file
         $data = '';
@@ -52,10 +54,7 @@ class SISAIHDownloader{
         $data = ob_get_contents();
         ob_end_clean();
         
-        
-        if ($result){
-            echo "Successfully written to ".self::LOCAL_FILE."\n";            
-        } else {
+        if (!$result){
             echo "There was a problem\n";
         }
         
