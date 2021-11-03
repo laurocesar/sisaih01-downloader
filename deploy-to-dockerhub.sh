@@ -14,7 +14,7 @@ git push origin $NEW_TAG
 
 # -- build docker --
 
-docker build -f DockerfileARM -t laurocesar/sisaih01-downloader 
+docker build -f DockerfileARM -t laurocesar/sisaih01-downloader .
 
 
 # -- push to Docker Hub --
