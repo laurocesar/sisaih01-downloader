@@ -8,13 +8,13 @@ and serves it as a http endpoint.
 Build the default image:
 
 ```
-docker build -t laurocesar/sisaih01-downloader .
+docker build -t laurocesar/sisaih01-downloader 
 ```
 
 Build the ARM image:
 
 ```
-docker build -t laurocesar/sisaih01-downloader .
+docker build -t laurocesar/sisaih01-downloader - < DockerfileARM
 ```
 
 Run it as a Docker compose:
