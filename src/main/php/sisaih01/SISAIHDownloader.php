@@ -46,12 +46,12 @@ class SISAIHDownloader{
         if (!$conn_id){
             throw new ErrorException("Could not connect to ".self::FTP_SERVER);
         }
-
+        
         // login with username and password
         $login_result = ftp_login($conn_id, self::FTP_USER, self::FTP_PASSWORD);
+        ftp_pasv($conn_id, true);
         
         // options
-        ftp_pasv($conn_id, true);
         ftp_raw($conn_id, 'OPTS UTF8 ON');
         
         // try to download $server_file and save to $local_file
