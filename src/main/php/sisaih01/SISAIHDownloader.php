@@ -35,7 +35,23 @@ class SISAIHDownloader{
         return $result;
     }
     
+    /**
+     * Donwload using wget
+     * @return string
+     */
     private function download(): string{
+        exec('wget -O - ftp://' . self::FTP_SERVER . self::FTP_FILE, $array);
+        
+        $data = implode('<br>', $array);
+        
+        return mb_convert_encoding($data, 'UTF-8');
+    }
+    
+    /**
+     * Donwload using fle_get_contents
+     * @return string
+     */
+    private function downloadFileGetContents(): string{
         $data = file_get_contents('ftp://' . self::FTP_SERVER . self::FTP_FILE  );
         
         return mb_convert_encoding($data, 'UTF-8');

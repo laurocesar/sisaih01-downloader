@@ -31,6 +31,7 @@ Run:
 docker container run --rm -v $(pwd)/src/main/php/sisaih01:/app/ php:7.4-cli php app/sisaih01.php
 ```
 
+
 ## Deploy do Docker Hub in ARM Archirecture
 
 Using ARM Architecture in order to deploy at Oracle Cloud using Oracle Linux v8.
