@@ -35,11 +35,18 @@ class SISAIHDownloader{
         return $result;
     }
     
+    private function download(): string{
+        $data = file_get_contents('ftp://' . self::FTP_SERVER . self::FTP_FILE  );
+        
+        return mb_convert_encoding($data, 'UTF-8');
+        
+    }
+    
     /**
      * Download from FTP
      * @return string
      */
-    private function download(): string{
+    private function downloadFTP(): string{
         // set up basic connection
         $conn_id = ftp_connect(self::FTP_SERVER);
         
@@ -49,6 +56,13 @@ class SISAIHDownloader{
         
         // login with username and password
         $login_result = ftp_login($conn_id, self::FTP_USER, self::FTP_PASSWORD);
+        
+        if (!$login_result){
+            throw new ErrorException("Couldn't login as ".self::FTP_USER);
+        }
+        
+        // passive mode
+        ftp_set_option($conn_id, FTP_USEPASVADDRESS, false);
         ftp_pasv($conn_id, true);
         
         // options
